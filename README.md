@@ -1,2 +1,3 @@
-# syntactic-analysis
-Analisador Sintático simplificado para Pascal - Trabalho da disciplina de Compiladores
+# Trabalhos de Compiladores
+
+**Analisador Sintático** e **Analisador Léxico** para Pascal simplificado desenvolvido durante a disciplina de Compiladores com base no livro do Kowaltowski.
