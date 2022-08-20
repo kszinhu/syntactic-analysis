@@ -9,7 +9,7 @@ program exemplo1
 			s:=s+q;
 		else
 			s:=s-q;
-	end;
+	end
 begin
 	read(n);
 	s:=0; i:=0;

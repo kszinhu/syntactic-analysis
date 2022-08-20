@@ -1,17 +1,9 @@
-/**
- * @Nome: Cassiano Henrique Aparecido Rodrigues
- * @Matricula: 201020891
- * @Sistema Operacional: Manjaro Linux (5.13.19-2-MANJARO-x86_64)
- * @Compilador: gcc (GCC) 12.1.0
- *
- * Using ISO C++17 (C++17) -- apply with -std=c++17 flag
- */
 #include <map>
 #include <iostream>
 #include <string>
 #include <fstream>
 
-std::ifstream input_file;
+std::ifstream read_file;
 std::ofstream output_file;
 
 int line_number = 1, column_number = 1;
@@ -56,8 +48,6 @@ std::map<std::string, std::string> tokens = {
     {"/", "SS_DIVIDE"},
     {"<", "SS_LESS"},
     {">", "SS_GREATER"},
-    {"<=", "SS_LESS_EQUAL"},
-    {">=", "SS_GREATER_EQUAL"},
     {"=", "SS_EQUAL"},
     {"(", "SS_OPEN_PARENTHESIS"},
     {")", "SS_CLOSE_PARENTHESIS"},
@@ -79,9 +69,9 @@ void write_output(char capsuled_char)
 // FUNÇÃO PRÓXIMO
 bool proximo(char &next_char)
 {
-  if (input_file.good() && input_file.peek() != EOF)
+  if (read_file.good() && read_file.peek() != EOF)
   {
-    input_file >> std::noskipws >> next_char;
+    read_file >> std::noskipws >> next_char;
 
     if (next_char == '\n')
     {

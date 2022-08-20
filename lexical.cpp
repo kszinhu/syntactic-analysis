@@ -11,7 +11,7 @@
 #include <string>
 #include <fstream>
 
-std::ifstream input_file;
+std::ifstream read_file;
 std::ofstream output_file;
 
 int line_number = 1, column_number = 1;
@@ -47,7 +47,7 @@ std::map<std::string, std::string> tokens = {
     {"NOT", "RW_NOT"},
     {"DIV", "RW_DIV"},
     {"INTEGER", "RW_INTEGER"},
-    {"ARRAY", "RW_ARRAY"},
+    {"BOOLEAN", "RW_BOOLEAN"},
     {"STRING", "RW_STRING"},
     {":=", "SS_ASSIGN"},
     {"+", "SS_PLUS"},
@@ -59,6 +59,7 @@ std::map<std::string, std::string> tokens = {
     {"<=", "SS_LESS_EQUAL"},
     {">=", "SS_GREATER_EQUAL"},
     {"=", "SS_EQUAL"},
+    {"<>", "SS_NOT_EQUAL"},
     {"(", "SS_OPEN_PARENTHESIS"},
     {")", "SS_CLOSE_PARENTHESIS"},
     {".", "SS_DOT"},
@@ -79,9 +80,9 @@ void write_output(char capsuled_char)
 // FUNÇÃO PRÓXIMO
 bool proximo(char &next_char)
 {
-  if (input_file.good() && input_file.peek() != EOF)
+  if (read_file.good() && read_file.peek() != EOF)
   {
-    input_file >> std::noskipws >> next_char;
+    read_file >> std::noskipws >> next_char;
 
     if (next_char == '\n')
     {
@@ -139,7 +140,7 @@ std::string lexical_analysis(char &next_char)
     proximo(next_char);
   }
 
-  if (tokens[std::string(1, next_char)] != "")
+  if (tokens[std::to_string(next_char)] != "")
   {
     atom = next_char;
     proximo(next_char);
@@ -195,7 +196,7 @@ std::string lexical_analysis(char &next_char)
 
 int main()
 {
-  input_file.open("programa.txt");
+  read_file.open("programa.txt");
   output_file.open("output.out");
 
   char next_char;
@@ -206,14 +207,14 @@ int main()
     do
     {
       write_output(lexical_analysis(next_char));
-    } while (input_file.good());
+    } while (read_file.good());
   }
   catch (const std::exception &e)
   {
     std::cerr << e.what() << '\n';
   }
 
-  input_file.close();
+  read_file.close();
   output_file.close();
 
   return 0;
