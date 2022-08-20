@@ -47,15 +47,11 @@ void listIdentifierFormalParameters();
 void endSectionFormalParameters();
 void compoundStatement();
 void statement();
-void endStatement();
 void statementWithoutLabel();
-void assignmentOrProcedure();
 void assignment();
 void callProcedure();
 void ifStatement();
-void endConditionalStatement();
 void whileStatement();
-void forStatement();
 void expression();
 void simpleExpression();
 void optionalExpression();
@@ -678,7 +674,7 @@ main()
   sintaticAnalysis();
 
   printf("\n\nAnálise sintática concluída!\n");
-  getchar();
+  system("pause");
 
   return 0;
 }
