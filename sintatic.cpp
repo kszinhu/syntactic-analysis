@@ -56,7 +56,6 @@ void expression();
 void simpleExpression();
 void optionalExpression();
 void relationalExpression();
-void listOfExpressions();
 void term();
 void factor();
 void factorWithExpression();
@@ -573,15 +572,6 @@ void relationalExpression()
   }
 }
 
-void listOfExpressions()
-{
-  if (std::regex_match(CURRENT_TOKEN, std::regex("SS_COMMA")))
-  {
-    next("SS_COMMA", 2);
-    expression();
-  }
-}
-
 void expression()
 {
   simpleExpression();
@@ -615,7 +605,7 @@ void sintaticAnalysis()
 
 main()
 {
-  setlocale(LC_ALL, ".OCP");
+  setlocale(LC_ALL, "pt");
   std::string input_file_name;
 
   std::cout << "O arquivo de entrada está na mesma pasta do executável? (Y/n)" << '\n';
